@@ -6,6 +6,7 @@
   <div class="card mb-3 shadow-sm" *ngFor="let job of jobs">
     <div class="card-body">
       <h5 class="card-title mb-1 text-primary">{{ job.title }}</h5>
+      <p class="text-muted mb-1">{{ job.companyName }}</p>
       <p class="card-subtitle mb-2 text-muted">
         <i class="bi bi-geo-alt-fill"></i> {{ job.location }} |
         <i class="bi bi-briefcase-fill"></i> {{ job.type }} |

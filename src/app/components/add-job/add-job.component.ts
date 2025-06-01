@@ -23,6 +23,7 @@ export class AddJobComponent implements OnInit {
   ngOnInit(): void {
     this.jobForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
+      companyName: ['', [Validators.required]],
       description: ['', Validators.required],
       location: ['', Validators.required],
       type: ['FULL_TIME', Validators.required],
@@ -35,6 +36,8 @@ export class AddJobComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.jobForm.value);
+
     if (this.jobForm.valid) {
       const job: Job = this.jobForm.value as Job;
       this.jobService.createJob(job).subscribe({
