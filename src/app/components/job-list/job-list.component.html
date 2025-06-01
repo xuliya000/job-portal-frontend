@@ -1,1 +1,18 @@
-<p>job-list works!</p>
+<div class="container mt-4">
+  <h2 class="mb-3">Job Listings</h2>
+
+  <div *ngIf="jobs.length === 0">No jobs available.</div>
+
+  <div class="card mb-3" *ngFor="let job of jobs">
+    <div class="card-body">
+      <h5 class="card-title">{{ job.title }}</h5>
+      <p class="card-text">
+        <strong>Location:</strong> {{ job.location }} |
+        <strong>Type:</strong> {{ job.type }} |
+        <strong>Level:</strong> {{ job.experienceLevel }}
+      </p>
+      <p class="card-text">{{ job.description }}</p>
+      <p class="card-text"><strong>Salary:</strong> {{ job.salaryMin }} - {{ job.salaryMax }}</p>
+    </div>
+  </div>
+</div>
