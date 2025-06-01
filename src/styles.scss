@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #f3f2ef; // LinkedIn灰色背景
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
