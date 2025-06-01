@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h2>Add New Job</h2>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label>Title</label>
+      <input class="form-control" formControlName="title" />
+    </div>
+
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Location</label>
+      <input class="form-control" formControlName="location" />
+    </div>
+
+    <div class="mb-3">
+      <label>Type</label>
+      <select class="form-control" formControlName="type">
+        <option value="FULL_TIME">Full Time</option>
+        <option value="PART_TIME">Part Time</option>
+        <option value="FREELANCE">Freelance</option>
+        <option value="CONTRACT">Contract</option>
+        <option value="INTERN">Intern</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Experience Level</label>
+      <select class="form-control" formControlName="experienceLevel">
+        <option value="JUNIOR">Junior</option>
+        <option value="MID">Mid</option>
+        <option value="SENIOR">Senior</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Responsibilities</label>
+      <textarea class="form-control" formControlName="responsibilities"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Qualifications</label>
+      <textarea class="form-control" formControlName="qualifications"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Salary Min</label>
+      <input class="form-control" type="number" formControlName="salaryMin" />
+    </div>
+
+    <div class="mb-3">
+      <label>Salary Max</label>
+      <input class="form-control" type="number" formControlName="salaryMax" />
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+</div>

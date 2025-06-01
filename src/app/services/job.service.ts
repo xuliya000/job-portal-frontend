@@ -24,4 +24,9 @@ export class JobService {
   getJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(this.apiUrl);
   }
+
+  createJob(job: Job): Observable<Job> {
+    return this.http.post<Job>(this.apiUrl, job);
+  }
+
 }
