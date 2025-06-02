@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { ApplyComponent } from './components/apply/apply.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 // 👇 On importe les routes depuis app.routes.ts
 import { routes } from './app.routes';
@@ -21,7 +22,8 @@ import { routes } from './app.routes';
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        Ng5SliderModule
     ],
     providers: [],
     bootstrap: [AppComponent] // standalone component possible ici

@@ -4,15 +4,17 @@
   <!-- Formulaire de filtre -->
   <form [formGroup]="filterForm" (ngSubmit)="applyFilter()" class="mb-4">
     <div class="row g-3 align-items-end">
-      <div class="col-md-4">
-        <label for="location" class="form-label">Location</label>
-        <input id="location" type="text" class="form-control" formControlName="location" placeholder="Enter location" />
+
+
+      <div class="col-md-3">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" formControlName="location" placeholder="e.g. Paris, Remote" />
       </div>
 
       <div class="col-md-3">
-        <label for="type" class="form-label">Job Type</label>
-        <select id="type" class="form-select" formControlName="type">
-          <option value="">All</option>
+        <label class="form-label">Job Type</label>
+        <select class="form-select" formControlName="type">
+          <option value="">All Types</option>
           <option value="FULL_TIME">Full Time</option>
           <option value="PART_TIME">Part Time</option>
           <option value="FREELANCE">Freelance</option>
@@ -22,20 +24,50 @@
       </div>
 
       <div class="col-md-3">
-        <label for="experienceLevel" class="form-label">Experience Level</label>
-        <select id="experienceLevel" class="form-select" formControlName="experienceLevel">
-          <option value="">All</option>
+        <label class="form-label">Experience Level</label>
+        <select class="form-select" formControlName="experienceLevel">
+          <option value="">All Levels</option>
           <option value="JUNIOR">Junior</option>
           <option value="MID">Mid</option>
           <option value="SENIOR">Senior</option>
         </select>
       </div>
 
-      <div class="col-md-2 d-grid">
-        <button type="submit" class="btn btn-primary">Filter</button>
+
+      <div class="col-md-3 d-flex gap-2">
+        <button type="submit" class="btn btn-primary w-100">
+          Filter
+        </button>
+        <button type="button" class="btn btn-outline-secondary w-100" (click)="resetFilters()">
+          Reset
+        </button>
       </div>
+
+
+
+      <div class="col-md-3">
+        <label class="form-label">Minimum Salary (€)</label>
+        <input type="number" class="form-control" formControlName="salaryMin" placeholder="e.g. 30000" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Maximum Salary (€)</label>
+        <input type="number" class="form-control" formControlName="salaryMax" placeholder="e.g. 60000" />
+      </div>
+
     </div>
   </form>
+
+  <div class="d-flex justify-content-end align-items-center mb-4">
+    <label class="me-2 fw-semibold text-secondary">Sort by:</label>
+    <select class="form-select w-auto" [(ngModel)]="sortOption" (change)="sortJobs()" name="sortSelect">
+      <option value="date-desc">📅 Newest First</option>
+      <option value="date-asc">📅 Oldest First</option>
+      <option value="salary-desc">💰 Salary: High to Low</option>
+      <option value="salary-asc">💰 Salary: Low to High</option>
+    </select>
+  </div>
+
 
   <div *ngIf="filteredJobs.length === 0" class="text-muted text-center">No jobs match your criteria.</div>
 
@@ -63,11 +95,11 @@
           <a class="btn btn-outline-secondary" [routerLink]="['/job', job.id]">
             Details
           </a>
-          
+
           <a class="btn btn-outline-primary mt-auto" [routerLink]="['/apply', job.id]">
             Apply Now
           </a>
-          
+
         </div>
       </div>
     </div>

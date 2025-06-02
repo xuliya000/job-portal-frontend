@@ -28,7 +28,7 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit(): void {
     this.applicationService.getAllApplications().subscribe({
       next: (data) => {
-        console.log('📦 Received applications:', data);  // ✅ 打印数据
+        console.log('📦 Received applications:', data);  //
         this.applications = data;
       },
       error: (err) => {
