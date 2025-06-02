@@ -1,34 +1,33 @@
-<!-- 全局导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+<nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #023047;">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" routerLink="/">JobPortal</a>
-
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
+    <a class="navbar-brand text-light fw-bold fs-4" routerLink="/">JobPortal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
       aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">Job Listings</a>
+          <a class="btn btn-outline-light px-4 fw-semibold" routerLink="/" routerLinkActive="active">
+            Jobs
+          </a>          
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/add-job']" routerLinkActive="active">Post a Job</a>
+          <a class="btn btn-warning px-4 fw-semibold text-dark" routerLink="/add-job" routerLinkActive="active">
+            Post Job
+          </a>
         </li>
+
       </ul>
     </div>
   </div>
 </nav>
 
-
-<!-- 页面内容区域 -->
+<!-- Page content -->
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>

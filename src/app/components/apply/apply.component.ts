@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -72,5 +73,20 @@ export class ApplyComponent implements OnInit {
       alert('Application submitted successfully!');
       this.router.navigate(['/']);
     });
+=======
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-apply',
+  templateUrl: './apply.component.html',
+})
+export class ApplyComponent implements OnInit {
+  jobId: string | null = null;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.jobId = this.route.snapshot.paramMap.get('id');
+>>>>>>> 66a24b3 (Filtres)
   }
 }

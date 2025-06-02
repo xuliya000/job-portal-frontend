@@ -1,0 +1,39 @@
+:root {
+    --blue-light: #8ecae6;
+    --blue-medium: #219ebc;
+    --blue-dark: #023047;
+    --yellow-orange: #ffb703;
+    --orange: #fb8500;
+  }
+  
+  .bg-primary {
+    background-color: var(--blue-medium) !important;
+  }
+  .text-primary {
+    color: var(--blue-dark) !important;
+  }
+  .btn-primary {
+    background-color: var(--blue-medium);
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: var(--blue-dark);
+  }
+  
+  /* Carte animée */
+  .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Troncature à 3 lignes */
+  .text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
