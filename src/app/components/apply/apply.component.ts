@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Val
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-apply',
@@ -49,6 +51,12 @@ export class ApplyComponent implements OnInit {
     this.skills.push(this.fb.group({ skillName: [''] }));
   }
 
+  removeSkill(index: number): void {
+    if (this.skills.length > 1) {
+      this.skills.removeAt(index);
+    }
+  }
+
   get experiences(): FormArray {
     return this.form.get('experiences') as FormArray;
   }
@@ -62,15 +70,41 @@ export class ApplyComponent implements OnInit {
     }));
   }
 
+  removeExperience(index: number): void {
+    if (this.experiences.length > 1) {
+      this.experiences.removeAt(index);
+    }
+  }
+
   submit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Incomplete Form',
+        text: 'Please fill in all required fields correctly before submitting.',
+        confirmButtonColor: '#d33'
+      });
+
+      return;
+    }
+
     const payload = {
       ...this.form.value,
-      job: { id: this.jobId } // 后端需要一个 job 对象引用
+      job: { id: this.jobId }
     };
 
     this.http.post('http://localhost:8080/v1/applications', payload).subscribe(() => {
-      alert('Application submitted successfully!');
-      this.router.navigate(['/']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Application Submitted',
+        text: 'Your application has been successfully sent!',
+        confirmButtonColor: '#28a745'
+      }).then(() => {
+        this.router.navigate(['/']);
+      });
     });
   }
+
 }

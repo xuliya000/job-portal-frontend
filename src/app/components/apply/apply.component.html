@@ -1,26 +1,141 @@
-
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <input formControlName="firstName" placeholder="First Name" required />
-  <input formControlName="lastName" placeholder="Last Name" required />
-  <input formControlName="email" placeholder="Email" required />
-  <input formControlName="phone" placeholder="Phone" />
-
-  <div formArrayName="skills">
-    <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
-      <input formControlName="skillName" placeholder="Skill" />
+<div class="container my-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Job Application</h4>
     </div>
-    <button (click)="addSkill()" type="button">+ Add Skill</button>
-  </div>
 
-  <div formArrayName="experiences">
-    <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i">
-      <input formControlName="title" placeholder="Title" />
-      <textarea formControlName="description" placeholder="Description"></textarea>
-      <input type="date" formControlName="startDate" />
-      <input type="date" formControlName="endDate" />
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <!-- Personal Info -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              [ngClass]="{ 'is-invalid': form.get('firstName')?.invalid && form.get('firstName')?.touched }"
+            />
+            <div class="invalid-feedback">First name is required.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              [ngClass]="{ 'is-invalid': form.get('lastName')?.invalid && form.get('lastName')?.touched }"
+            />
+            <div class="invalid-feedback">Last name is required.</div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': form.get('email')?.invalid && form.get('email')?.touched }"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('email')?.errors?.['required']">
+              Email is required.
+            </div>
+            <div class="invalid-feedback" *ngIf="form.get('email')?.errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Phone</label>
+            <input class="form-control" formControlName="phone" placeholder="Optional" />
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="mb-4">
+          <label class="form-label">Skills</label>
+          <div formArrayName="skills">
+            <div
+              *ngFor="let skill of skills.controls; let i = index"
+              [formGroupName]="i"
+              class="input-group mb-2"
+            >
+              <input
+                class="form-control"
+                formControlName="skillName"
+                placeholder="Skill"
+              />
+              <button
+                *ngIf="skills.length > 1"
+                type="button"
+                class="btn btn-outline-danger"
+                (click)="removeSkill(i)"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            (click)="addSkill()"
+          >
+            + Add Skill
+          </button>
+        </div>
+
+
+        <!-- Experiences -->
+        <div class="mb-4">
+          <label class="form-label">Experiences</label>
+          <div formArrayName="experiences">
+            <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i" class="border rounded p-3 mb-3">
+              <div class="row mb-2">
+                <div class="col-md-6">
+                  <label class="form-label">Title</label>
+                  <input class="form-control" formControlName="title" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Description</label>
+                  <input class="form-control" formControlName="description" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Start Date</label>
+                  <input type="date" class="form-control" formControlName="startDate" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">End Date</label>
+                  <input type="date" class="form-control" formControlName="endDate" />
+                </div>
+              </div>
+
+              <div class="text-end mt-2">
+                <button
+                  *ngIf="experiences.length > 1"
+                  type="button"
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="removeExperience(i)"
+                >
+                  Remove Experience
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="addExperience()">+ Add Experience</button>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-end">
+          <button type="submit" class="btn btn-success">Submit Application</button>
+        </div>
+
+      </form>
     </div>
-    <button (click)="addExperience()" type="button">+ Add Experience</button>
   </div>
-
-  <button type="submit">Submit Application</button>
-</form>
+</div>

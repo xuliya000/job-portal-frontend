@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="mb-4">Application Records</h2>
+
+  <div *ngIf="applications.length === 0" class="alert alert-info">
+    No applications found.
+  </div>
+
+  <div *ngFor="let app of applications" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ app.firstName }} {{ app.lastName }}</h5>
+      <p class="card-text">
+        <strong>Email:</strong> {{ app.email }}<br />
+        <strong>Phone:</strong> {{ app.phone }}<br />
+        <strong>Submitted:</strong> {{ app.submittedAt | date: 'medium' }}<br />
+        <strong>Job Applied:</strong> {{ app.job?.title }}
+      </p>
+
+      <p><strong>Skills:</strong>
+        <span *ngFor="let s of app.skills" class="badge bg-info text-dark me-1">
+          {{ s.skillName }}
+        </span>
+      </p>
+
+      <p><strong>Experiences:</strong></p>
+      <ul>
+        <li *ngFor="let exp of app.experiences">
+          <strong>{{ exp.title }}</strong> ({{ exp.startDate }} → {{ exp.endDate }})<br />
+          <small>{{ exp.description }}</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
