@@ -1,34 +1,26 @@
-<<<<<<< HEAD
 
 <form [formGroup]="form" (ngSubmit)="submit()">
-  <input formControlName="firstName" placeholder="First Name" required />
-  <input formControlName="lastName" placeholder="Last Name" required />
-  <input formControlName="email" placeholder="Email" required />
-  <input formControlName="phone" placeholder="Phone" />
+    <input formControlName="firstName" placeholder="First Name" required />
+    <input formControlName="lastName" placeholder="Last Name" required />
+    <input formControlName="email" placeholder="Email" required />
+    <input formControlName="phone" placeholder="Phone" />
 
-  <div formArrayName="skills">
+    <div formArrayName="skills">
     <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
-      <input formControlName="skillName" placeholder="Skill" />
+        <input formControlName="skillName" placeholder="Skill" />
     </div>
     <button (click)="addSkill()" type="button">+ Add Skill</button>
-  </div>
+    </div>
 
-  <div formArrayName="experiences">
+    <div formArrayName="experiences">
     <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i">
-      <input formControlName="title" placeholder="Title" />
-      <textarea formControlName="description" placeholder="Description"></textarea>
-      <input type="date" formControlName="startDate" />
-      <input type="date" formControlName="endDate" />
+        <input formControlName="title" placeholder="Title" />
+        <textarea formControlName="description" placeholder="Description"></textarea>
+        <input type="date" formControlName="startDate" />
+        <input type="date" formControlName="endDate" />
     </div>
     <button (click)="addExperience()" type="button">+ Add Experience</button>
-  </div>
+    </div>
 
-  <button type="submit">Submit Application</button>
+    <button type="submit">Submit Application</button>
 </form>
-=======
-<div class="container mt-5">
-    <h2>Postuler à l'offre</h2>
-    <p>Ici s'affichera le formulaire de candidature pour le job ID : {{ jobId }}</p>
-  </div>
-  
->>>>>>> 66a24b3 (Filtres)

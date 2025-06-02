@@ -12,19 +12,18 @@ import { AddJobComponent } from './components/add-job/add-job.component';
 import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    JobListComponent,
-    ApplyComponent,
-    AddJobComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes)  // ✅ utilise maintenant les bonnes routes
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        JobListComponent,
+        ApplyComponent,
+        AddJobComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(routes)
+    ],
+    providers: [],
+    bootstrap: [AppComponent] // standalone component possible ici
 })
 export class AppModule { }

@@ -3,16 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { JobService, Job } from '../../services/job.service';
-import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
-  standalone: true,
-<<<<<<< HEAD
-  imports: [CommonModule, RouterLink],
-=======
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
->>>>>>> 66a24b3 (Filtres)
   templateUrl: './job-list.component.html',
   styleUrls: ['./job-list.component.scss']
 })

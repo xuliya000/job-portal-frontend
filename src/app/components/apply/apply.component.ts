@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {CommonModule} from '@angular/common';
+import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-apply',
-  standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule],
+    HttpClientModule
+  ],
   templateUrl: './apply.component.html',
 })
 export class ApplyComponent implements OnInit {
@@ -66,27 +66,12 @@ export class ApplyComponent implements OnInit {
   submit(): void {
     const payload = {
       ...this.form.value,
-      job: { id: this.jobId } // 后端需要一个 job 对象引用
+      job: { id: this.jobId } // Backend expects a job reference object
     };
 
     this.http.post('http://localhost:8080/v1/applications', payload).subscribe(() => {
       alert('Application submitted successfully!');
       this.router.navigate(['/']);
     });
-=======
-import { ActivatedRoute } from '@angular/router';
-
-@Component({
-  selector: 'app-apply',
-  templateUrl: './apply.component.html',
-})
-export class ApplyComponent implements OnInit {
-  jobId: string | null = null;
-
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.jobId = this.route.snapshot.paramMap.get('id');
->>>>>>> 66a24b3 (Filtres)
   }
 }
