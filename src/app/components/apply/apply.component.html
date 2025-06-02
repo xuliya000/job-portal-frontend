@@ -1,0 +1,26 @@
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input formControlName="firstName" placeholder="First Name" required />
+  <input formControlName="lastName" placeholder="Last Name" required />
+  <input formControlName="email" placeholder="Email" required />
+  <input formControlName="phone" placeholder="Phone" />
+
+  <div formArrayName="skills">
+    <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+      <input formControlName="skillName" placeholder="Skill" />
+    </div>
+    <button (click)="addSkill()" type="button">+ Add Skill</button>
+  </div>
+
+  <div formArrayName="experiences">
+    <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i">
+      <input formControlName="title" placeholder="Title" />
+      <textarea formControlName="description" placeholder="Description"></textarea>
+      <input type="date" formControlName="startDate" />
+      <input type="date" formControlName="endDate" />
+    </div>
+    <button (click)="addExperience()" type="button">+ Add Experience</button>
+  </div>
+
+  <button type="submit">Submit Application</button>
+</form>

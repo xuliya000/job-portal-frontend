@@ -16,6 +16,13 @@
       <p class="text-success fw-semibold">
         💰 {{ job.salaryMin }} - {{ job.salaryMax }} €
       </p>
+
+      <!-- Add new application button -->
+      <a class="btn btn-outline-primary mt-2"
+         [routerLink]="['/jobs', job.id, 'apply']">
+        Apply
+      </a>
     </div>
   </div>
+
 </div>
