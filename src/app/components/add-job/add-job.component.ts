@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JobService, Job } from '../../services/job.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-job',
@@ -27,30 +28,44 @@ export class AddJobComponent implements OnInit {
       location: ['', Validators.required],
       type: ['FULL_TIME', Validators.required],
       experienceLevel: ['JUNIOR', Validators.required],
-      responsibilities: [''],
-      qualifications: [''],
+      responsibilities: ['', Validators.required],
+      qualifications: ['', Validators.required],
       salaryMin: [0, [Validators.required, Validators.min(0)]],
       salaryMax: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
   onSubmit(): void {
-    console.log(this.jobForm.value);
-
-    if (this.jobForm.valid) {
-      const job: Job = this.jobForm.value as Job;
-      this.jobService.createJob(job).subscribe({
-        next: () => {
-          alert('Job created successfully!');
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          console.error('Failed to create job:', err);
-          alert('Failed to create job.');
-        }
+    if (this.jobForm.invalid) {
+      this.jobForm.markAllAsTouched();
+      Swal.fire({
+        icon: 'error',
+        title: 'Incomplete Posting',
+        text: 'Please fill in all required fields correctly before submitting.',
+        confirmButtonColor: '#d33',
       });
-    } else {
-      alert('Please fill in all required fields correctly.');
+      return;
     }
+    const job = this.jobForm.value;
+
+    this.jobService.createJob(job).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Job Created',
+          text: 'Your job post has been successfully added!',
+          confirmButtonColor: '#28a745'
+        });
+        this.jobForm.reset();
+      },
+      error: () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Submission Failed',
+          text: 'There was an error submitting the job. Please try again.',
+          confirmButtonColor: '#d33',
+        });
+      }
+    });
   }
 }

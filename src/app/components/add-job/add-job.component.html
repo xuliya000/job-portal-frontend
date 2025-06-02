@@ -1,71 +1,126 @@
-<div class="container mt-5 mb-5 p-4 shadow rounded-4 bg-light">
-  <h2 class="text-center mb-4 text-primary fw-bold">📄 Add New Job Posting</h2>
-
-  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">Job Title</label>
-        <input class="form-control" formControlName="title" />
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Company Name</label>
-        <input class="form-control" formControlName="companyName" />
-      </div>
-
-      <div class="col-12">
-        <label class="form-label">Job Description</label>
-        <textarea class="form-control" rows="3" formControlName="description"></textarea>
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Location</label>
-        <input class="form-control" formControlName="location" />
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Job Type</label>
-        <select class="form-select" formControlName="type">
-          <option value="FULL_TIME">Full Time</option>
-          <option value="PART_TIME">Part Time</option>
-          <option value="FREELANCE">Freelance</option>
-          <option value="CONTRACT">Contract</option>
-          <option value="INTERN">Internship</option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Experience Level</label>
-        <select class="form-select" formControlName="experienceLevel">
-          <option value="JUNIOR">Junior</option>
-          <option value="MID">Mid</option>
-          <option value="SENIOR">Senior</option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Minimum Salary (€)</label>
-        <input class="form-control" type="number" formControlName="salaryMin" />
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Maximum Salary (€)</label>
-        <input class="form-control" type="number" formControlName="salaryMax" />
-      </div>
-
-      <div class="col-12">
-        <label class="form-label">Responsibilities</label>
-        <textarea class="form-control" rows="2" formControlName="responsibilities"></textarea>
-      </div>
-
-      <div class="col-12">
-        <label class="form-label">Qualifications</label>
-        <textarea class="form-control" rows="2" formControlName="qualifications"></textarea>
-      </div>
+<div class="container my-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Post a New Job</h4>
     </div>
 
-    <div class="text-center mt-4">
-      <button class="btn btn-success px-4" type="submit">✅ Create Job</button>
+    <div class="card-body">
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Job Title</label>
+            <input
+              class="form-control"
+              formControlName="title"
+              placeholder="e.g. Frontend Developer"
+              [ngClass]="{ 'is-invalid': jobForm.get('title')?.invalid && jobForm.get('title')?.touched }"
+            />
+            <div class="invalid-feedback">Job title is required.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Company Name</label>
+            <input
+              class="form-control"
+              formControlName="companyName"
+              [ngClass]="{ 'is-invalid': jobForm.get('companyName')?.invalid && jobForm.get('companyName')?.touched }"
+            />
+            <div class="invalid-feedback">Company name is required.</div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Location</label>
+            <input class="form-control"
+                   formControlName="location"
+                   placeholder="e.g. Paris / Remote"
+                   [ngClass]="{ 'is-invalid': jobForm.get('location')?.invalid && jobForm.get('location')?.touched }" />
+            <div class="invalid-feedback">Location is required.</div>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Job Type</label>
+            <select class="form-select"
+                    formControlName="type"
+                    [ngClass]="{ 'is-invalid': jobForm.get('type')?.invalid && jobForm.get('type')?.touched }">
+              <option value="">Select Type</option>
+              <option value="FULL_TIME">Full Time</option>
+              <option value="PART_TIME">Part Time</option>
+              <option value="FREELANCE">Freelance</option>
+              <option value="CONTRACT">Contract</option>
+              <option value="INTERN">Internship</option>
+            </select>
+            <div class="invalid-feedback">Job type is required.</div>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Experience Level</label>
+            <select class="form-select"
+                    formControlName="experienceLevel"
+                    [ngClass]="{ 'is-invalid': jobForm.get('experienceLevel')?.invalid && jobForm.get('experienceLevel')?.touched }">
+              <option value="">Select Level</option>
+              <option value="JUNIOR">Junior</option>
+              <option value="MID">Mid</option>
+              <option value="SENIOR">Senior</option>
+            </select>
+            <div class="invalid-feedback">Experience level is required.</div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Minimum Salary (€)</label>
+            <input class="form-control"
+                   type="number"
+                   formControlName="salaryMin"
+                   placeholder="e.g. 30000"
+                   [ngClass]="{ 'is-invalid': jobForm.get('salaryMin')?.invalid && jobForm.get('salaryMin')?.touched }" />
+            <div class="invalid-feedback">Please enter a valid minimum salary.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Maximum Salary (€)</label>
+            <input class="form-control"
+                   type="number"
+                   formControlName="salaryMax"
+                   placeholder="e.g. 60000"
+                   [ngClass]="{ 'is-invalid': jobForm.get('salaryMax')?.invalid && jobForm.get('salaryMax')?.touched }" />
+            <div class="invalid-feedback">Please enter a valid maximum salary.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Job Description</label>
+          <textarea class="form-control"
+                    rows="3"
+                    formControlName="description"
+                    [ngClass]="{ 'is-invalid': jobForm.get('description')?.invalid && jobForm.get('description')?.touched }"></textarea>
+          <div class="invalid-feedback">Job description is required.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Responsibilities</label>
+          <textarea class="form-control"
+                    rows="2"
+                    formControlName="responsibilities"
+                    [ngClass]="{ 'is-invalid': jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched }"></textarea>
+          <div class="invalid-feedback">Responsibilities field is required.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Qualifications</label>
+          <textarea class="form-control"
+                    rows="2"
+                    formControlName="qualifications"
+                    [ngClass]="{ 'is-invalid': jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched }"></textarea>
+          <div class="invalid-feedback">Qualifications are required.</div>
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-success px-4">Create Job</button>
+        </div>
+
+      </form>
     </div>
-  </form>
+  </div>
 </div>
+
