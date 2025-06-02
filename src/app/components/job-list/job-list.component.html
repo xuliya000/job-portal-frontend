@@ -60,9 +60,14 @@
 
           <p class="text-success fw-semibold mb-3">💰 {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
 
+          <a class="btn btn-outline-secondary" [routerLink]="['/job', job.id]">
+            Details
+          </a>
+          
           <a class="btn btn-outline-primary mt-auto" [routerLink]="['/apply', job.id]">
             Apply Now
           </a>
+          
         </div>
       </div>
     </div>

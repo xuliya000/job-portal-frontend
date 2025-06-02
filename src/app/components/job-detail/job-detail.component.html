@@ -1,0 +1,16 @@
+<div class="container mt-4" *ngIf="job">
+    <h2 class="mb-3">{{ job.title }}</h2>
+    <p><strong>Company:</strong> {{ job.companyName }}</p>
+    <p><strong>Location:</strong> {{ job.location }}</p>
+    <p><strong>Type:</strong> {{ job.type }}</p>
+    <p><strong>Experience Level:</strong> {{ job.experienceLevel }}</p>
+  
+    <p><strong>Description:</strong></p>
+    <p>{{ job.description }}</p>
+
+  
+    <p><strong>Salary Range:</strong> {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
+  
+    <a routerLink="/" class="btn btn-secondary mt-3">Back to Jobs</a>
+  </div>
+  
