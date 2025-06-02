@@ -82,7 +82,7 @@ export class ApplyComponent implements OnInit {
 
       Swal.fire({
         icon: 'error',
-        title: 'Incomplete Form',
+        title: 'Incomplete Application',
         text: 'Please fill in all required fields correctly before submitting.',
         confirmButtonColor: '#d33'
       });

@@ -11,14 +11,33 @@
       <ul class="navbar-nav ms-auto align-items-center gap-2">
 
         <li class="nav-item">
-          <a class="btn btn-outline-light px-4 fw-semibold" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <a
+            class="btn btn-outline-light px-4 fw-semibold"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             Jobs
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="btn btn-warning px-4 fw-semibold text-dark" routerLink="/add-job" routerLinkActive="active">
+          <a
+            class="btn btn-warning px-4 fw-semibold text-dark"
+            routerLink="/add-job"
+            routerLinkActive="active"
+          >
             Post Job
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="btn btn-success px-4 fw-semibold"
+            routerLink="/applications"
+            routerLinkActive="active"
+          >
+            Applications Records
           </a>
         </li>
 
