@@ -6,7 +6,6 @@ import { JobService, Job } from '../../services/job.service';
 
 @Component({
   selector: 'app-add-job',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-job.component.html',
   styleUrls: ['./add-job.component.scss']
