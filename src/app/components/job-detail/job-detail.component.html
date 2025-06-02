@@ -1,16 +1,61 @@
-<div class="container mt-4" *ngIf="job">
-    <h2 class="mb-3">{{ job.title }}</h2>
-    <p><strong>Company:</strong> {{ job.companyName }}</p>
-    <p><strong>Location:</strong> {{ job.location }}</p>
-    <p><strong>Type:</strong> {{ job.type }}</p>
-    <p><strong>Experience Level:</strong> {{ job.experienceLevel }}</p>
-  
-    <p><strong>Description:</strong></p>
-    <p>{{ job.description }}</p>
+<div class="container mt-5" *ngIf="job" style="max-width: 800px;">
+    <div class="card shadow rounded-4 border-0">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">{{ job.title }}</h2>
+            <small class="fst-italic">{{ job.companyName }}</small>
+        </div>
 
-  
-    <p><strong>Salary Range:</strong> {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
-  
-    <a routerLink="/" class="btn btn-secondary mt-3">Back to Jobs</a>
-  </div>
-  
+        <div class="card-body">
+        <div class="mb-3">
+            <strong>Location:</strong> {{ job.location }}
+        </div>
+
+        <div class="mb-3 d-flex flex-wrap gap-3">
+            <span class="badge bg-info text-dark">
+                <i class="bi bi-briefcase-fill"></i> {{ job.type }}
+            </span>
+            <span class="badge bg-secondary">
+                <i class="bi bi-person-badge-fill"></i> {{ job.experienceLevel }}
+            </span>
+        </div>
+
+        <hr />
+
+        <section class="mb-4">
+            <h5>Description</h5>
+            <p>{{ job.description }}</p>
+        </section>
+
+        <div *ngIf="job.responsibilities">
+            <strong>Responsibilities:</strong>
+            <ul>
+                <li *ngFor="let resp of job.responsibilities.split(';')">
+                    {{ resp.trim() }}
+                </li>
+            </ul>
+        </div>
+        
+        <div *ngIf="job.qualifications">
+            <strong>Qualifications:</strong>
+            <ul>
+                <li *ngFor="let qual of job.qualifications.split(';')">
+                    {{ qual.trim() }}
+                </li>
+            </ul>
+        </div>
+
+        <section class="mb-4">
+            <h5>Salary Range</h5>
+            <p>€{{ job.salaryMin }} - €{{ job.salaryMax }}</p>
+        </section>
+
+        <section>
+            <h6 class="text-muted">Posted on: {{ job.createdDate | date:'longDate' }}</h6>
+        </section>
+    </div>
+
+    <div class="card-footer text-end">
+        <a routerLink="/" class="btn btn-secondary mt-3">Back to Jobs</a>
+    </div>
+    </div>
+</div>

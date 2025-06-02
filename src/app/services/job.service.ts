@@ -8,10 +8,13 @@ export interface Job {
   companyName: string;
   description: string;
   location: string;
+  responsibilities: string;
+  qualifications: string;
   type: string;
   experienceLevel: string;
   salaryMin: number;
   salaryMax: number;
+  createdDate: string;
 }
 
 @Injectable({
