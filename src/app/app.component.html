@@ -1,47 +1,54 @@
 <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #023047;">
   <div class="container-fluid">
-    <a class="navbar-brand text-light fw-bold fs-4" routerLink="/">JobPortal</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Logo -->
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center gap-2">
+    <a class="navbar-brand text-light fw-bold fs-4" routerLink="/"> JobPortal</a>
+    <!-- Droite -->
+    <div class="d-flex ms-auto align-items-center gap-2">
+      <a class="btn btn-outline-light fw-semibold me-2" routerLink="/" routerLinkActive="active">
+          Job Opportunities
+      </a>
+      <ng-container *ngIf="isLoggedIn; else loginButton">
+        
+        <!-- Candidat -->
+        <ng-container *ngIf="!isRecruiter(); else recruiterView">
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-light dropdown-toggle fw-semibold"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ getInitial() }}. {{ getFirstName() }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" routerLink="/applications">My Applications</a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
 
-        <li class="nav-item">
-          <a
-            class="btn btn-outline-light px-4 fw-semibold"
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            Jobs
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a
-            class="btn btn-warning px-4 fw-semibold text-dark"
-            routerLink="/add-job"
-            routerLinkActive="active"
-          >
+        <!-- Recruteur -->
+        <ng-template #recruiterView>
+          <a class="btn btn-warning text-dark fw-semibold" routerLink="/add-job" routerLinkActive="active">
             Post Job
           </a>
-        </li>
-        
-        <li class="nav-item">
-          <a
-            class="btn btn-success px-4 fw-semibold"
-            routerLink="/applications"
-            routerLinkActive="active"
-          >
+          <a class="btn btn-success fw-semibold" routerLink="/applications" routerLinkActive="active">
             Applications Records
           </a>
-        </li>
+          <button class="btn btn-outline-light fw-semibold" (click)="logout()">Logout</button>
+        </ng-template>
+      </ng-container>
 
-      </ul>
+      <!-- Pas connecté -->
+      <ng-template #loginButton>
+        <a class="btn btn-outline-light fw-semibold" routerLink="/login-choice">Sign In</a>
+      </ng-template>
     </div>
   </div>
 </nav>

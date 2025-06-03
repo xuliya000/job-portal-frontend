@@ -38,4 +38,8 @@ export class JobService {
     return this.http.post<Job>(this.apiUrl, job);
   }
 
+  getJobsByCompanyName(companyName: string): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.apiUrl}/by-company?companyName=${encodeURIComponent(companyName)}`);
+  }
+  
 }

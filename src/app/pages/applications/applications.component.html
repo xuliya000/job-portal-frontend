@@ -1,6 +1,19 @@
 <div class="container">
   <h2 class="mb-4">Application Records</h2>
 
+  <div *ngIf="isRecruiter " class="mb-3">
+    <label for="jobFilter" class="form-label">Filter by Job:</label>
+    <select id="jobFilter" [(ngModel)]="selectedJobId" (change)="filterByJob()" class="form-select">
+      <option value="">-- All jobs --</option>
+      <option *ngFor="let job of jobs" [value]="job.id">
+        {{ job.title }} ({{ job.location }})
+      </option>
+    </select>
+  </div>
+  
+  
+  
+
   <div *ngIf="applications.length === 0" class="alert alert-info">
     No applications found.
   </div>
