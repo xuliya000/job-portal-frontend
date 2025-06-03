@@ -79,6 +79,10 @@ export class ApplyComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.router.navigate(['']); 
+  }
+
   submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

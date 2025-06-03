@@ -32,6 +32,7 @@ export class AddJobComponent implements OnInit {
       qualifications: ['', Validators.required],
       salaryMin: [0, [Validators.required, Validators.min(0)]],
       salaryMax: [0, [Validators.required, Validators.min(0)]],
+      createdDate: new Date().toISOString(),
     });
   }
 
