@@ -38,7 +38,7 @@
         <div *ngIf="job.qualifications">
             <strong>Qualifications:</strong>
             <ul>
-                <li *ngFor="let qual of job.qualifications.split(';')">
+                <li *ngFor="let qual of job.qualifications.split(',')">
                     {{ qual.trim() }}
                 </li>
             </ul>

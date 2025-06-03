@@ -1,0 +1,20 @@
+.company-dropdown {
+    position: absolute;    /* Ne pousse plus la hauteur du formulaire */
+    top: 100%;             /* Juste sous le champ */
+    left: 0;
+    width: 100%;           /* Prend toute la largeur du parent */
+    max-height: 200px;     /* Limite la hauteur */
+    overflow-y: auto;      /* Scroll si trop grand */
+    z-index: 1050;         /* Au-dessus des autres éléments */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 0.375rem; /* arrondis pour que ça matche Bootstrap */
+    padding: 0.75rem;       /* un peu d’espace intérieur */
+}
+.rotate {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.rotate.rotate {
+    transform: rotate(180deg);
+}

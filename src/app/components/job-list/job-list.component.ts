@@ -17,15 +17,18 @@ export class JobListComponent implements OnInit {
   filteredJobs: Job[] = [];
   filterForm: FormGroup;
   sortOption: string = 'date-desc'; // default sorting: newest first
+  uniqueCompanies: string[] = [];
+  companyFilterOpen = false;
 
 
   constructor(private jobService: JobService, private fb: FormBuilder) {
     this.filterForm = this.fb.group({
-      location: [''],
+      search: [''],
       type: [''],
       experienceLevel: [''],
       salaryMin: [''],
-      salaryMax: ['']
+      salaryMax: [''],
+      companies: [[]],
     });
   }
 
@@ -34,27 +37,42 @@ export class JobListComponent implements OnInit {
       next: (data: Job[]) => {
         this.jobs = data;
         this.filteredJobs = data; // Affiche tout au départ
+        this.uniqueCompanies = [...new Set(data.map(job => job.companyName).filter(name => !!name))].sort();
         this.sortJobs(); // initial sort
       },
       error: (err) => console.error('Failed to load jobs:', err),
     });
   }
 
-  applyFilter(): void {
-    const { location, type, experienceLevel, salaryMin, salaryMax } = this.filterForm.value;
+  applyFilter() {
+    const search = this.filterForm.value.search?.toLowerCase().trim() || '';
+    const { type, experienceLevel, salaryMin, salaryMax, companies } = this.filterForm.value;
 
+    const searchWords = search.split(/\s+/).filter((word: string) => word.length > 0);
+  
     this.filteredJobs = this.jobs.filter(job => {
-      return (
-        (!location || job.location.toLowerCase().includes(location.toLowerCase())) &&
-        (!type || job.type === type) &&
-        (!experienceLevel || job.experienceLevel === experienceLevel)&&
-        (!salaryMin || (job.salaryMin ?? 0) >= +salaryMin) &&
-        (!salaryMax || (job.salaryMax ?? 0) <= +salaryMax)
+      // On convertit les champs en minuscules pour comparaison insensible à la casse
+      const title = job.title.toLowerCase();
+      const location = job.location.toLowerCase();
+  
+      // Vérifier que chaque mot est dans le titre ou dans le lieu
+      const allWordsMatch = searchWords.every((word: string) =>
+        title.includes(word) || location.includes(word)
       );
-    });
+  
+      const matchesType = type ? job.type === type : true;
+      const matchesExperience = experienceLevel ? job.experienceLevel === experienceLevel : true;
+      const matchesSalaryMin = salaryMin ? job.salaryMin >= salaryMin : true;
+      const matchesSalaryMax = salaryMax ? job.salaryMax <= salaryMax : true;
+      
+      // companies est un tableau de noms sélectionnés (en minuscules pour comparaison)
+      const matchesCompany = companies && companies.length > 0 ? companies.includes(job.companyName) : true;
 
-    this.sortJobs(); // sort after filtering
+      return allWordsMatch && matchesType && matchesExperience && matchesSalaryMin && matchesSalaryMax && matchesCompany;
+    });
+  
   }
+  
 
   resetFilters(): void {
     this.filterForm.setValue({
@@ -86,4 +104,61 @@ export class JobListComponent implements OnInit {
         break;
     }
   }
+
+
+  getTimeAgo(dateString: string | undefined): string {
+    if (!dateString) return '';
+    const createdDate = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - createdDate.getTime();
+  
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  
+    if (diffMinutes < 1) return 'Publié il y a quelques secondes';
+    if (diffMinutes < 60) return `Publié il y a ${diffMinutes} minute${diffMinutes > 1 ? 's' : ''}`;
+    if (diffHours < 24) return `Publié il y a ${diffHours} heure${diffHours > 1 ? 's' : ''}`;
+    return `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+  }
+  
+  toggleCompanyFilter() {
+    this.companyFilterOpen = !this.companyFilterOpen;
+  }
+  
+  onCompanyCheckboxChange(event: any) {
+    const selectedCompanies = this.filterForm.value.companies as string[];
+    const company = event.target.value;
+    if (event.target.checked) {
+      if (!selectedCompanies.includes(company)) {
+        selectedCompanies.push(company);
+      }
+    } else {
+      const index = selectedCompanies.indexOf(company);
+      if (index !== -1) {
+        selectedCompanies.splice(index, 1);
+      }
+    }
+    this.filterForm.patchValue({ companies: selectedCompanies });
+  }
+
+  closeCompanyFilter() {
+    // Ajoute un petit délai pour éviter fermeture si clic dans dropdown
+    setTimeout(() => {
+      this.companyFilterOpen = false;
+    }, 200);
+  }
+  
+  removeCompany(company: string, event: Event) {
+    event.stopPropagation(); // empêcher la propagation au clic sur le badge
+    const companies = this.filterForm.value.companies as string[];
+    const index = companies.indexOf(company);
+    if (index !== -1) {
+      companies.splice(index, 1);
+      this.filterForm.patchValue({ companies });
+    }
+  }
+  
+  
+
 }
