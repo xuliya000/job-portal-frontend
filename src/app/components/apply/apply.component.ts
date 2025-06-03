@@ -19,6 +19,9 @@ import Swal from 'sweetalert2';
 export class ApplyComponent implements OnInit {
   form: FormGroup;
   jobId: string;
+  cvFile: File | null = null;
+  coverLetterFile: File | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -79,32 +82,92 @@ export class ApplyComponent implements OnInit {
   submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-
+  
       Swal.fire({
         icon: 'error',
         title: 'Incomplete Application',
         text: 'Please fill in all required fields correctly before submitting.',
         confirmButtonColor: '#d33'
       });
-
+  
       return;
     }
-
+  
+    const formData = new FormData();
     const payload = {
       ...this.form.value,
       job: { id: this.jobId }
     };
-
-    this.http.post('http://localhost:8080/v1/applications', payload).subscribe(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Application Submitted',
-        text: 'Your application has been successfully sent!',
-        confirmButtonColor: '#28a745'
-      }).then(() => {
-        this.router.navigate(['/']);
-      });
+  
+    formData.append('applicationData', new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+  
+    if (this.cvFile) {
+      formData.append('cv', this.cvFile);
+    }
+  
+    if (this.coverLetterFile) {
+      formData.append('coverLetter', this.coverLetterFile);
+    }
+  
+    this.http.post('http://localhost:8080/v1/applications', formData).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Application Submitted',
+          text: 'Your application has been successfully sent!',
+          confirmButtonColor: '#28a745'
+        }).then(() => {
+          this.router.navigate(['/']);
+        });
+      },
+      error: (err) => {
+        if (err.status === 409) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Duplicate Application',
+            text: 'You have already applied to this job with this email.',
+            confirmButtonColor: '#ffc107'
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Submission Failed',
+            text: 'Something went wrong. Please try again later.',
+            confirmButtonColor: '#d33'
+          });
+        }
+      }
     });
   }
+  
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+
+  onFileDrop(event: DragEvent, type: 'cv' | 'coverLetter') {
+    event.preventDefault();
+    const file = event.dataTransfer?.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      if (type === 'cv') this.cvFile = file;
+      else this.coverLetterFile = file;
+    } else {
+      alert('Only PDF files are accepted.');
+    }
+  }
+
+  onFileSelected(event: Event, type: 'cv' | 'coverLetter') {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      if (type === 'cv') this.cvFile = file;
+      else this.coverLetterFile = file;
+    } else {
+      alert('Only PDF files are accepted.');
+    }
+  }
+
 
 }
+

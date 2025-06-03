@@ -130,6 +130,54 @@
           <button type="button" class="btn btn-outline-secondary btn-sm" (click)="addExperience()">+ Add Experience</button>
         </div>
 
+        <div class="row g-3 mb-4">
+          <!-- Upload CV -->
+          <div class="col-md-6">
+            <div
+              class="p-3 border border-primary rounded-4 text-center bg-light bg-opacity-50 upload-zone h-100"
+              (dragover)="onDragOver($event)"
+              (drop)="onFileDrop($event, 'cv')"
+            >
+              <i class="bi bi-file-earmark-arrow-up-fill fs-3 text-primary"></i>
+              <p class="fw-bold mb-1">Upload CV</p>
+              <p class="text-muted small mb-2">
+                Drag & drop or <span class="text-primary text-decoration-underline" style="cursor:pointer;" (click)="cvInput.click()">click</span>
+              </p>
+              <input
+                type="file"
+                #cvInput
+                hidden
+                accept="application/pdf"
+                (change)="onFileSelected($event, 'cv')"
+              />
+              <div *ngIf="cvFile" class="text-success small">✅ {{ cvFile.name }}</div>
+            </div>
+          </div>
+        
+          <!-- Upload Cover Letter -->
+          <div class="col-md-6">
+            <div
+              class="p-3 border border-warning rounded-4 text-center bg-warning bg-opacity-25 upload-zone h-100"
+              (dragover)="onDragOver($event)"
+              (drop)="onFileDrop($event, 'coverLetter')"
+            >
+              <i class="bi bi-file-earmark-arrow-up-fill fs-3 text-warning"></i>
+              <p class="fw-bold mb-1">Upload Cover Letter</p>
+              <p class="text-muted small mb-2">
+                Drag & drop or <span class="text-warning text-decoration-underline" style="cursor:pointer;" (click)="coverLetterInput.click()">click</span>
+              </p>
+              <input
+                type="file"
+                #coverLetterInput
+                hidden
+                accept="application/pdf"
+                (change)="onFileSelected($event, 'coverLetter')"
+              />
+              <div *ngIf="coverLetterFile" class="text-success small">✅ {{ coverLetterFile.name }}</div>
+            </div>
+          </div>
+        </div>
+        
         <!-- Submit Button -->
         <div class="text-end">
           <button type="submit" class="btn btn-success">Submit Application</button>

@@ -15,6 +15,7 @@ export interface Job {
   salaryMin: number;
   salaryMax: number;
   createdDate: string;
+  applicationCount?: number;
 }
 
 @Injectable({

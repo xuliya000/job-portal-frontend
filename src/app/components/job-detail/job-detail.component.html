@@ -52,11 +52,23 @@
         <section>
             <h6 class="text-muted">Posted on: {{ job.createdDate | date:'longDate' }}</h6>
         </section>
-    </div>
 
-    <div class="card-footer text-end">
-        <a routerLink="/" class="btn btn-secondary mt-3">Back to Jobs</a>
-        <a [routerLink]="['/apply', job.id]" class="btn btn-warning mt-3 text-dark">Apply Now</a>
-    </div>
+        <section class="mb-4">
+            <h6 class="text-muted fst-italic mb-0">
+              <span *ngIf="job && job.applicationCount === 0">
+                🔥 Be the first to apply and make an impact!
+              </span>
+              <span *ngIf="job && job.applicationCount && job.applicationCount > 0">
+                📩 {{ job.applicationCount }} {{ job.applicationCount === 1 ? 'application' : 'applications' }}
+              </span>
+            </h6>
+          </section>
+        </div>
+    
+        <!-- Card footer en dehors du card-body -->
+        <div class="card-footer text-end border-top-0 d-flex justify-content-between flex-wrap gap-2">
+          <a routerLink="/" class="btn btn-secondary">Back to Jobs</a>
+          <a [routerLink]="['/apply', job.id]" class="btn btn-warning text-dark">Apply Now</a>
+        </div>
     </div>
 </div>
