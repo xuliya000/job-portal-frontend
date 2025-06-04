@@ -34,27 +34,28 @@ Click into any job to view detailed description, requirements, and salary.
 Fill out the application form, list skills and experience, and upload documents.
 ![Apply Form](./screenshots/apply.png)
 
----
-
-### 6. Confirmation Modal
 Receive a clear submission success message.
 ![Submission Confirmation](./screenshots/submitted.png)
 
----
-
-### 7. Application Tracking
-Recruiters can review applicant details including CV and experience.
-![Application Records](./screenshots/records.png)
 
 ---
 
-### 8. Post a New Job
+### 6. Application Tracking
+Candidates can review his own application records.
+![Application Records](./screenshots/candidates_records.png)
+
+Recruiters can check applicant details.
+![Application Records](./screenshots/recruiter_records.png)
+
+---
+
+### 7. Post a New Job
 Recruiters can publish new job listings with customizable fields.
 ![Post Job Form](./screenshots/post-job.png)
 
 ---
 
-### 9. Terms & Conditions Page
+### 8. Terms & Conditions Page
 Well-styled and humorously written terms and conditions.
 ![Terms](./screenshots/terms.png)
 
@@ -81,6 +82,3 @@ Well-styled and humorously written terms and conditions.
 
 - [Frontend GitHub Repo](https://github.com/xuliya000/job-portal-frontend)
 - [Backend GitHub Repo](https://github.com/xuliya000/job-portal-backend)
-
-
-> Make sure these are committed and properly referenced for GitHub rendering.
