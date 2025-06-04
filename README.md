@@ -72,14 +72,3 @@ Recruiters can view detailed applications per job, including candidate profiles,
 | Backend      | Spring Boot 3.4.x |
 | Database     | PostgreSQL (via Supabase) |
 | Versioning   | Git & GitHub       |
-
----
-
-## 🗂 Project Structure
-
-```text
-job-portal/
-├── backend/         # Spring Boot backend
-├── frontend/        # Angular frontend
-├── README.md
-└── screenshots/     # UI images for documentation
