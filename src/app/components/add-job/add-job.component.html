@@ -3,49 +3,60 @@
     <div class="card-header bg-primary text-white text-center rounded-top-4">
       <h4 class="mb-0">📢 Post a New Job</h4>
     </div>
+    <div class="card-body px-4 py-5 bg-light bg-opacity-50 rounded-bottom-4">
+      <p class="text-muted text-center mb-4">
+        Fill in the form below to publish your job offer. Fields marked with <span class="text-danger">*</span> are required.
+      </p>
 
-    <div class="card-body px-4 py-5">
       <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
         <div class="row g-3">
           <!-- Job Title -->
           <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-briefcase me-1"></i> Job Title</label>
+            <label class="form-label">
+              <i class="bi bi-briefcase me-1"></i> Job Title <span class="text-danger">*</span>
+            </label>
             <input
               class="form-control"
               formControlName="title"
-              placeholder="e.g. Frontend Developer"
               [ngClass]="{ 'is-invalid': jobForm.get('title')?.invalid && jobForm.get('title')?.touched }"
             />
+            <small class="text-secondary fst-italic">e.g. Frontend Developer</small>
             <div class="invalid-feedback">Job title is required.</div>
           </div>
 
           <!-- Company Name -->
           <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-building me-1"></i> Company Name</label>
+            <label class="form-label">
+              <i class="bi bi-building me-1"></i> Company Name <span class="text-danger">*</span>
+            </label>
             <input
               class="form-control"
               formControlName="companyName"
-              placeholder="e.g. TechCorp"
               [ngClass]="{ 'is-invalid': jobForm.get('companyName')?.invalid && jobForm.get('companyName')?.touched }"
             />
+            <small class="text-secondary fst-italic">e.g. TechCorp</small>
             <div class="invalid-feedback">Company name is required.</div>
           </div>
 
           <!-- Location -->
           <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-geo-alt-fill me-1"></i> Location</label>
+            <label class="form-label">
+              <i class="bi bi-geo-alt-fill me-1"></i> Location <span class="text-danger">*</span>
+            </label>
             <input
               class="form-control"
               formControlName="location"
-              placeholder="e.g. Paris or Remote"
               [ngClass]="{ 'is-invalid': jobForm.get('location')?.invalid && jobForm.get('location')?.touched }"
             />
+            <small class="text-secondary fst-italic">e.g. Paris or Remote</small>
             <div class="invalid-feedback">Location is required.</div>
           </div>
 
           <!-- Job Type -->
           <div class="col-md-3">
-            <label class="form-label"><i class="bi bi-clock me-1"></i> Job Type</label>
+            <label class="form-label">
+              <i class="bi bi-clock me-1"></i> Job Type <span class="text-danger">*</span>
+            </label>
             <select
               class="form-select"
               formControlName="type"
@@ -63,7 +74,9 @@
 
           <!-- Experience Level -->
           <div class="col-md-3">
-            <label class="form-label"><i class="bi bi-bar-chart-line me-1"></i> Experience Level</label>
+            <label class="form-label">
+              <i class="bi bi-bar-chart-line me-1"></i> Experience Level <span class="text-danger">*</span>
+            </label>
             <select
               class="form-select"
               formControlName="experienceLevel"
@@ -79,7 +92,9 @@
 
           <!-- Salary -->
           <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-currency-euro me-1"></i> Minimum Salary (€)</label>
+            <label class="form-label">
+              <i class="bi bi-currency-euro me-1"></i> Minimum Salary
+            </label>
             <input
               type="number"
               class="form-control"
@@ -91,7 +106,9 @@
           </div>
 
           <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-currency-euro me-1"></i> Maximum Salary (€)</label>
+            <label class="form-label">
+              <i class="bi bi-currency-euro me-1"></i> Maximum Salary
+            </label>
             <input
               type="number"
               class="form-control"
@@ -107,7 +124,9 @@
 
         <!-- Job Description -->
         <div class="mb-3">
-          <label class="form-label"><i class="bi bi-file-text me-1"></i> Job Description</label>
+          <label class="form-label">
+            <i class="bi bi-file-text me-1"></i> Job Description <span class="text-danger">*</span>
+          </label>
           <textarea
             rows="3"
             class="form-control"
@@ -120,12 +139,13 @@
 
         <!-- Responsibilities -->
         <div class="mb-3">
-          <label class="form-label"><i class="bi bi-list-task me-1"></i> Responsibilities</label>
+          <label class="form-label">
+            <i class="bi bi-list-task me-1"></i> Responsibilities <span class="text-danger">*</span>
+          </label>
           <textarea
             rows="2"
             class="form-control"
             formControlName="responsibilities"
-            placeholder="e.g. Build UI; Collaborate with team; Write tests"
             [ngClass]="{ 'is-invalid': jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched }"
           ></textarea>
           <div class="form-text">Separate responsibilities with a semicolon <code>;</code>.</div>
@@ -134,12 +154,13 @@
 
         <!-- Qualifications -->
         <div class="mb-3">
-          <label class="form-label"><i class="bi bi-award me-1"></i> Qualifications</label>
+          <label class="form-label">
+            <i class="bi bi-award me-1"></i> Qualifications <span class="text-danger">*</span>
+          </label>
           <textarea
             rows="2"
             class="form-control"
             formControlName="qualifications"
-            placeholder="e.g. HTML, CSS, Angular, TypeScript"
             [ngClass]="{ 'is-invalid': jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched }"
           ></textarea>
           <div class="form-text">Separate qualifications with a comma <code>,</code>.</div>
@@ -148,7 +169,7 @@
 
         <div class="text-end mt-4">
           <button type="submit" class="btn btn-success btn-lg px-4 shadow-sm">
-            <i class="bi bi-plus-circle me-1"></i> Create Job
+            <i class="bi bi-send-plus me-1"></i> Create Job
           </button>
         </div>
       </form>

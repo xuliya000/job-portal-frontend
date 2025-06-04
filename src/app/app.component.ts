@@ -35,9 +35,6 @@ export class AppComponent implements DoCheck {
     return !!storedUser?.companyName; // renvoie true seulement si companyName est une chaîne non vide
   }
 
-
-  
-
   getInitial(): string {
     return this.user?.lastName?.charAt(0).toUpperCase() || '';
   }
