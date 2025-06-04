@@ -1,47 +1,96 @@
-<div class="container">
-  <h2 class="mb-4">Application Records</h2>
+<div class="container" style="max-width: 900px;">
 
-  <div *ngIf="isRecruiter " class="mb-3">
-    <label for="jobFilter" class="form-label">Filter by Job:</label>
-    <select id="jobFilter" [(ngModel)]="selectedJobId" (change)="filterByJob()" class="form-select">
-      <option value="">-- All jobs --</option>
-      <option *ngFor="let job of jobs" [value]="job.id">
-        {{ job.title }} ({{ job.location }})
-      </option>
-    </select>
+  <h2 class="mb-4 text-center text-primary fw-semibold">📂 Application Records</h2>
+
+  <!-- Filters -->
+  <div class="row justify-content-center mb-4">
+    <div *ngIf="isRecruiter" class="col-md-5 d-flex align-items-center gap-2">
+      <label for="jobFilter" class="form-label mb-0 fw-semibold">
+        <i class="bi bi-filter-circle me-1"></i> Filter:
+      </label>
+      <select
+        id="jobFilter"
+        [(ngModel)]="selectedJobId"
+        (change)="filterByJob()"
+        class="form-select form-select-sm"
+      >
+        <option value="">All jobs</option>
+        <option *ngFor="let job of jobs" [value]="job.id">
+          {{ job.title }} ({{ job.location }})
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4 d-flex align-items-center gap-2 mt-2 mt-md-0">
+      <label for="sortSelect" class="form-label mb-0 fw-semibold">
+        <i class="bi bi-sort-down-alt me-1"></i> Sort:
+      </label>
+      <select
+        id="sortSelect"
+        [(ngModel)]="sortOrder"
+        (change)="sortApplications()"
+        class="form-select form-select-sm"
+      >
+        <option value="desc">Most Recent</option>
+        <option value="asc">Oldest First</option>
+      </select>
+    </div>
   </div>
-  
-  
-  
 
-  <div *ngIf="applications.length === 0" class="alert alert-info">
-    No applications found.
+  <!-- No results -->
+  <div *ngIf="applications.length === 0" class="alert alert-info text-center">
+    <i class="bi bi-info-circle-fill me-1"></i> No applications found.
   </div>
 
-  <div *ngFor="let app of applications" class="card mb-3 shadow-sm">
-    <div class="card-body">
-      <h5 class="card-title">{{ app.firstName }} {{ app.lastName }}</h5>
-      <p class="card-text">
-        <strong>Email:</strong> {{ app.email }}<br />
-        <strong>Phone:</strong> {{ app.phone }}<br />
-        <strong>Submitted:</strong> {{ app.submittedAt | date: 'medium' }}<br />
-        <strong>Job Applied:</strong> {{ app.job.title }}
+  <!-- Application Cards -->
+  <div *ngFor="let app of applications" class="card mb-4 border-0 shadow-sm rounded-4 hover-shadow transition">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-dark fw-bold mb-0">
+          <i class="bi bi-person-circle me-2 text-primary"></i>
+          {{ app.firstName }} {{ app.lastName }}
+        </h4>
+        <small class="text-muted">
+          <i class="bi bi-clock me-1"></i> {{ app.submittedAt | date: 'medium' }}
+        </small>
+      </div>
+
+      <p class="mb-1">
+        <i class="bi bi-envelope-fill me-2 text-secondary"></i><strong>Email:</strong> {{ app.email }}
+      </p>
+      <p class="mb-1">
+        <i class="bi bi-phone-fill me-2 text-secondary"></i><strong>Phone:</strong> {{ app.phone }}
+      </p>
+      <p class="mb-3">
+        <i class="bi bi-briefcase-fill me-2 text-secondary"></i><strong>Applied for:</strong> {{ app.job.title }}
       </p>
 
-      <p><strong>Skills:</strong>
-        <span *ngFor="let s of app.skills" class="badge bg-info text-dark me-1">
-          {{ s.skillName }}
-        </span>
-      </p>
+      <div class="mb-3">
+        <p class="mb-1 fw-semibold"><i class="bi bi-tools me-2"></i>Skills</p>
+        <div>
+          <span
+            *ngFor="let s of app.skills"
+            class="badge rounded-pill bg-primary-subtle text-primary-emphasis border me-1 mb-1 px-3 py-2"
+          >
+            <i class="bi bi-check-circle-fill me-1"></i> {{ s.skillName }}
+          </span>
+        </div>
+      </div>
 
-      <p><strong>Experiences:</strong></p>
-      <ul>
-        <li *ngFor="let exp of app.experiences">
-          <strong>{{ exp.title }}</strong> ({{ exp.startDate }} → {{ exp.endDate }})<br />
-          <small>{{ exp.description }}</small>
-        </li>
-      </ul>
-
+      <div>
+        <p class="mb-2 fw-semibold"><i class="bi bi-journal-text me-2"></i>Experiences</p>
+        <ul class="list-unstyled ps-2">
+          <li *ngFor="let exp of app.experiences" class="mb-3">
+            <div class="fw-semibold text-dark">
+              <i class="bi bi-chevron-right me-1"></i> {{ exp.title }}
+            </div>
+            <div class="text-muted small">
+              {{ exp.startDate }} → {{ exp.endDate }}
+            </div>
+            <div>{{ exp.description }}</div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

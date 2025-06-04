@@ -20,6 +20,7 @@ export class ApplicationsComponent implements OnInit {
   companyName = '';
   selectedJobId: string = '';
   jobs: Job[] = [];
+  sortOrder: 'asc' | 'desc' = 'desc';
 
   constructor(
     private applicationService: ApplicationService,
@@ -57,12 +58,22 @@ export class ApplicationsComponent implements OnInit {
     this.applicationService.getApplicationsByCompany(companyName).subscribe({
       next: (data) => {
         console.log(`🏢 Applications for company ${companyName}:`, data);
-        this.applications = data;
         this.originalApplications = data;
+        this.applications = [...data]; // clone pour ne pas affecter l'original
+        this.sortApplications(); // 👈 tri ici
       },
       error: (err) => {
         console.error('❌ Error loading company applications:', err);
       }
+    });
+  }
+  
+
+  sortApplications() {
+    this.applications.sort((a, b) => {
+      const timeA = new Date(a.submittedAt).getTime();
+      const timeB = new Date(b.submittedAt).getTime();
+      return this.sortOrder === 'asc' ? timeA - timeB : timeB - timeA;
     });
   }
 
@@ -70,13 +81,16 @@ export class ApplicationsComponent implements OnInit {
     this.applicationService.getApplicationsByEmail(email).subscribe({
       next: (data) => {
         console.log(`📦 Applications for ${email}:`, data);
+        this.originalApplications = data;
         this.applications = data;
+        this.sortApplications(); // 👈 tri ici aussi
       },
       error: (err) => {
         console.error('❌ Error loading user applications:', err);
       }
     });
   }
+  
 
   filterByJob(): void {
     if (!this.selectedJobId) {
