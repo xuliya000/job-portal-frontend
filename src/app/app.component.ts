@@ -32,7 +32,7 @@ export class AppComponent implements DoCheck {
 
   isRecruiter(): boolean {
     const storedUser = JSON.parse(localStorage.getItem('user') || 'null');
-    return !!storedUser?.companyName; // renvoie true seulement si companyName est une chaîne non vide
+    return !!storedUser?.companyName;
   }
 
   getInitial(): string {

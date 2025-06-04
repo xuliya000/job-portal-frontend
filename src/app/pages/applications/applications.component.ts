@@ -59,8 +59,8 @@ export class ApplicationsComponent implements OnInit {
       next: (data) => {
         console.log(`🏢 Applications for company ${companyName}:`, data);
         this.originalApplications = data;
-        this.applications = [...data]; // clone pour ne pas affecter l'original
-        this.sortApplications(); // 👈 tri ici
+        this.applications = [...data];
+        this.sortApplications();
       },
       error: (err) => {
         console.error('❌ Error loading company applications:', err);
@@ -83,7 +83,7 @@ export class ApplicationsComponent implements OnInit {
         console.log(`📦 Applications for ${email}:`, data);
         this.originalApplications = data;
         this.applications = data;
-        this.sortApplications(); // 👈 tri ici aussi
+        this.sortApplications();
       },
       error: (err) => {
         console.error('❌ Error loading user applications:', err);

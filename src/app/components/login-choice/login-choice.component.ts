@@ -5,7 +5,7 @@ import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login-choice',
-  standalone: true,                  
+  standalone: true,
   imports: [CommonModule, LoginComponent, RegisterComponent],
   templateUrl: './login-choice.component.html',
   styleUrls: ['./login-choice.component.scss']
