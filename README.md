@@ -1,4 +1,4 @@
-# 💼 JobSter
+#  JobSter
 
 **JobSter** is a modern web platform built for connecting job seekers and recruiters. 
 
@@ -6,7 +6,7 @@ It simplifies the job application and hiring process.
 
 ---
 
-## 🔍 Features Overview
+##  Features Overview
 
 ### 1. Browse & Filter Jobs & Sort Jobs by dates or salaries
 Search by location, job type, salary, experience level, and company.
@@ -63,7 +63,7 @@ We have prepared some interesting terms and conditions.
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 | Layer       | Stack                        |
 |-------------|------------------------------|
@@ -74,13 +74,13 @@ We have prepared some interesting terms and conditions.
 
 ---
 
-## 👥 Contributors
+##  Contributors
 - Hongxiang LIN
 - Liya XU
 
 ---
 
-## 🔗 Project Links
+##  Project Links
 
 - [Frontend GitHub Repo](https://github.com/xuliya000/job-portal-frontend)
 - [Backend GitHub Repo](https://github.com/xuliya000/job-portal-backend)
