@@ -12,6 +12,11 @@
         
         <!-- Candidat -->
         <ng-container *ngIf="!isRecruiter(); else recruiterView">
+          <a class="btn btn-success fw-semibold" routerLink="/applications" routerLinkActive="active">
+            My Applications 
+          </a>
+
+          
           <div class="dropdown">
             <button
               class="btn btn-outline-light dropdown-toggle fw-semibold"
@@ -22,10 +27,6 @@
               {{ getInitial() }}. {{ getFirstName() }}
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" routerLink="/applications">My Applications</a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
               <li>
                 <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
               </li>

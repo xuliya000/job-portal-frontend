@@ -79,9 +79,9 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(res.user));
   
             if (res.user.companyName) {
-              this.router.navigate(['/recruiter-home']);
+              this.router.navigate(['']);
             } else {
-              this.router.navigate(['/candidate-home']);
+              this.router.navigate(['']);
             }
       
           },
