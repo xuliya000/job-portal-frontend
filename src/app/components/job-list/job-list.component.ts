@@ -49,43 +49,46 @@ export class JobListComponent implements OnInit {
     const { type, experienceLevel, salaryMin, salaryMax, companies } = this.filterForm.value;
 
     const searchWords = search.split(/\s+/).filter((word: string) => word.length > 0);
-  
+
     this.filteredJobs = this.jobs.filter(job => {
       // On convertit les champs en minuscules pour comparaison insensible à la casse
       const title = job.title.toLowerCase();
       const location = job.location.toLowerCase();
-  
+
       // Vérifier que chaque mot est dans le titre ou dans le lieu
       const allWordsMatch = searchWords.every((word: string) =>
         title.includes(word) || location.includes(word)
       );
-  
+
       const matchesType = type ? job.type === type : true;
       const matchesExperience = experienceLevel ? job.experienceLevel === experienceLevel : true;
       const matchesSalaryMin = salaryMin ? job.salaryMin >= salaryMin : true;
       const matchesSalaryMax = salaryMax ? job.salaryMax <= salaryMax : true;
-      
+
       // companies est un tableau de noms sélectionnés (en minuscules pour comparaison)
       const matchesCompany = companies && companies.length > 0 ? companies.includes(job.companyName) : true;
 
       return allWordsMatch && matchesType && matchesExperience && matchesSalaryMin && matchesSalaryMax && matchesCompany;
     });
-  
+
   }
-  
+
 
   resetFilters(): void {
-    this.filterForm.setValue({
-      location: '',
-      type: '',             //  All Types
-      experienceLevel: '',  //  All Levels
+    this.filterForm.reset({
+      search: '',
+      type: '',
+      experienceLevel: '',
       salaryMin: '',
-      salaryMax: ''
+      salaryMax: '',
+      companies: []
     });
 
+    this.companyFilterOpen = false;
     this.filteredJobs = [...this.jobs];
     this.sortJobs();
   }
+
 
 
   sortJobs(): void {
@@ -111,21 +114,21 @@ export class JobListComponent implements OnInit {
     const createdDate = new Date(dateString);
     const now = new Date();
     const diffMs = now.getTime() - createdDate.getTime();
-  
+
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
+
     if (diffMinutes < 1) return 'Publié il y a quelques secondes';
     if (diffMinutes < 60) return `Publié il y a ${diffMinutes} minute${diffMinutes > 1 ? 's' : ''}`;
     if (diffHours < 24) return `Publié il y a ${diffHours} heure${diffHours > 1 ? 's' : ''}`;
     return `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
   }
-  
+
   toggleCompanyFilter() {
     this.companyFilterOpen = !this.companyFilterOpen;
   }
-  
+
   onCompanyCheckboxChange(event: any) {
     const selectedCompanies = this.filterForm.value.companies as string[];
     const company = event.target.value;
@@ -148,7 +151,7 @@ export class JobListComponent implements OnInit {
       this.companyFilterOpen = false;
     }, 200);
   }
-  
+
   removeCompany(company: string, event: Event) {
     event.stopPropagation(); // empêcher la propagation au clic sur le badge
     const companies = this.filterForm.value.companies as string[];
@@ -158,7 +161,7 @@ export class JobListComponent implements OnInit {
       this.filterForm.patchValue({ companies });
     }
   }
-  
-  
+
+
 
 }
