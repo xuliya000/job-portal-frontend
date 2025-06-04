@@ -1,13 +1,13 @@
 # 💼 JobSter
 
-**JobSter** is a modern web platform built for connecting job seekers and recruiters. Designed with a sleek interface and practical features, it simplifies the job application and hiring process.
+**JobSter** is a modern web platform built for connecting job seekers and recruiters. It simplifies the job application and hiring process.
 
 ---
 
 ## 🔍 Features Overview
 
 ### 1. Browse & Filter Jobs
-Search by location, type, salary, experience level, and company.
+Search by location, job type, salary, experience level, and company.
 ![Job Listings](./screenshots/job-listings.png)
 
 ---
