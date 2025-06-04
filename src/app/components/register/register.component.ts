@@ -33,7 +33,9 @@ export class RegisterComponent implements OnInit {
       postalCode: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      companyName: ['']
+      companyName: [''],
+      acceptTerms: [false, Validators.requiredTrue],
+      subscribeNewsletter: [false]
     });
 
     if (this.profile === 'recruiter') {
@@ -44,7 +46,14 @@ export class RegisterComponent implements OnInit {
   
   onSubmit() {
     if (this.registerForm.invalid) {
-      this.errorMessage = 'Please fill all required fields correctly.';
+      this.registerForm.markAllAsTouched();
+  
+      // Ne pas afficher un message global si seul "acceptTerms" est fautif
+      if (this.registerForm.get('acceptTerms')?.invalid) {
+        this.errorMessage = ''; // pas besoin de redondance, c’est géré dans le HTML
+      } else {
+        this.errorMessage = 'Please fill all required fields correctly.';
+      }
       return;
     }
   
