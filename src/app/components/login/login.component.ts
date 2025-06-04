@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit {
 
         // Redirection selon le rôle
         if (role === 'candidate') {
-          this.router.navigate(['/candidate-home']);
+          this.router.navigate(['']);
         } else {
-          this.router.navigate(['/recruiter-home']);
+          this.router.navigate(['']);
         }
       },
       error: (err) => {

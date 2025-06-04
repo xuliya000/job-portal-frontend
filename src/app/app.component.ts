@@ -29,11 +29,13 @@ export class AppComponent implements DoCheck {
       this.isLoggedIn = false;
     }
   }
-  
+
   isRecruiter(): boolean {
     const storedUser = JSON.parse(localStorage.getItem('user') || 'null');
     return !!storedUser?.companyName; // renvoie true seulement si companyName est une chaîne non vide
   }
+
+
   
 
   getInitial(): string {
@@ -51,4 +53,10 @@ export class AppComponent implements DoCheck {
     this.user = null;
     this.router.navigate(['/']);
   }
+
+  getCompanyName(): string {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user?.companyName || 'Company';
+  }
+
 }
