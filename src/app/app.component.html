@@ -2,21 +2,21 @@
   <div class="container-fluid">
     <!-- Logo -->
 
-    <a class="navbar-brand text-light fw-bold fs-4" routerLink="/"> JobPortal</a>
+    <a class="navbar-brand text-light fw-bold fs-4" routerLink="/"> JobSter</a>
     <!-- Droite -->
     <div class="d-flex ms-auto align-items-center gap-2">
       <a class="btn btn-outline-light fw-semibold me-2" routerLink="/" routerLinkActive="active">
           Job Opportunities
       </a>
       <ng-container *ngIf="isLoggedIn; else loginButton">
-        
+
         <!-- Candidat -->
         <ng-container *ngIf="!isRecruiter(); else recruiterView">
           <a class="btn btn-success fw-semibold" routerLink="/applications" routerLinkActive="active">
-            My Applications 
+            My Applications
           </a>
 
-          
+
           <div class="dropdown">
             <button
               class="btn btn-outline-light dropdown-toggle fw-semibold"
