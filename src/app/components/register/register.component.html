@@ -82,7 +82,7 @@
             [ngClass]="{ 'is-invalid': registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched }"
           />
           <label class="form-check-label" for="acceptTerms">
-            I accept the <a href="/terms" target="_blank">Terms and Conditions</a> <span class="text-danger">*</span>
+            I accept the <a href="/terms" target="_blank" rel="noopener noreferrer">Terms and Conditions</a> <span class="text-danger">*</span>
           </label>
           <div class="invalid-feedback d-block"
                *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched">

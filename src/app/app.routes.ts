@@ -9,7 +9,7 @@ import { LoginChoiceComponent } from './components/login-choice/login-choice.com
 import { RegisterComponent } from './components/register/register.component';
 import { CandidateHomeComponent } from './pages/candidate-home/candidate-home.component';
 import { RecruiterHomeComponent } from './pages/recruiter-home/recruiter-home.component'; 
-
+import { TermsComponent } from './components/terms/terms.component';
 
 export const routes: Routes = [
   { path: '', component: JobListComponent },
@@ -22,4 +22,5 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'candidate-home', component: CandidateHomeComponent },
   { path: 'recruiter-home', component: RecruiterHomeComponent },
+  { path: 'terms', component: TermsComponent }
 ];
