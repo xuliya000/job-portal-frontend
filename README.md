@@ -57,12 +57,6 @@ Recruiters can publish new job listings with customizable fields.
 
 ---
 
-### 8. Terms & Conditions Page
-We have prepared some interesting terms and conditions.
-![Terms](./screenshots/terms.png)
-
----
-
 ##  Tech Stack
 
 | Layer       | Stack                        |
