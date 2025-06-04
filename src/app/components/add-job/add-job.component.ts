@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-job.component.scss']
 })
 export class AddJobComponent implements OnInit {
-  jobForm!: FormGroup; // 使用 `!` 延迟初始化，避免类型检查错误
+  jobForm!: FormGroup; 
 
   constructor(
     private fb: FormBuilder,

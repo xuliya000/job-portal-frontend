@@ -22,7 +22,7 @@ export interface Job {
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'http://localhost:8080/v1/jobs';  // 修改为你的后端URL
+  private apiUrl = 'http://localhost:8080/v1/jobs'; 
 
   constructor(private http: HttpClient) {}
 

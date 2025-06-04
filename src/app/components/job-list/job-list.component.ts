@@ -16,7 +16,7 @@ export class JobListComponent implements OnInit {
   jobs: Job[] = [];
   filteredJobs: Job[] = [];
   filterForm: FormGroup;
-  sortOption: string = 'date-desc'; // default sorting: newest first
+  sortOption: string = 'date-desc'; 
   uniqueCompanies: string[] = [];
   companyFilterOpen = false;
 
@@ -36,9 +36,9 @@ export class JobListComponent implements OnInit {
     this.jobService.getJobs().subscribe({
       next: (data: Job[]) => {
         this.jobs = data;
-        this.filteredJobs = data; // Affiche tout au départ
+        this.filteredJobs = data; 
         this.uniqueCompanies = [...new Set(data.map(job => job.companyName).filter(name => !!name))].sort();
-        this.sortJobs(); // initial sort
+        this.sortJobs(); 
       },
       error: (err) => console.error('Failed to load jobs:', err),
     });
@@ -146,14 +146,13 @@ export class JobListComponent implements OnInit {
   }
 
   closeCompanyFilter() {
-    // Ajoute un petit délai pour éviter fermeture si clic dans dropdown
     setTimeout(() => {
       this.companyFilterOpen = false;
     }, 200);
   }
 
   removeCompany(company: string, event: Event) {
-    event.stopPropagation(); // empêcher la propagation au clic sur le badge
+    event.stopPropagation();
     const companies = this.filterForm.value.companies as string[];
     const index = companies.indexOf(company);
     if (index !== -1) {

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone: true,           // <- important
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
 
   templateUrl: './register.component.html'
@@ -48,9 +48,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
   
-      // Ne pas afficher un message global si seul "acceptTerms" est fautif
       if (this.registerForm.get('acceptTerms')?.invalid) {
-        this.errorMessage = ''; // pas besoin de redondance, c’est géré dans le HTML
+        this.errorMessage = '';
       } else {
         this.errorMessage = 'Please fill all required fields correctly.';
       }

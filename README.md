@@ -1,59 +1,86 @@
-# JobPortalFrontend
+# 💼 JobSter
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+**JobSter** is a modern web platform built for connecting job seekers and recruiters. 
 
-## Development server
+It simplifies the job application and hiring process.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🔍 Features Overview
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 1. Browse & Filter Jobs & Sort Jobs by dates or salaries
+Search by location, job type, salary, experience level, and company.
+![Job Listings](./screenshots/job-listings.png)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 2. Candidate & Recruiter Login
+Separate login experiences for candidates and recruiters.
+![Login Page](./screenshots/login.png)
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3. Candidate Registration
+Register and create a full profile with contact, address, and preferences.
+![Register Page](./screenshots/register.png)
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+### 4. Job Details
+Click into any job to view detailed description, post dates, requirements, salary and number of applications.
+![Job Details](./screenshots/job-details.png)
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+### 5. Apply to a Job
+Fill out the application form, list skills and experience, and upload documents.
+![Apply Form](./screenshots/apply.png)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Receive a clear submission success message.
+![Submission Confirmation](./screenshots/submitted.png)
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+### 6. Application Tracking
+Candidates can review his own application records.
+![Application Records](./screenshots/candidates_records.png)
 
-## Running end-to-end tests
+Recruiters can check applicant details.
+![Application Records](./screenshots/recruiter_records.png)
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+### 7. Post a New Job
+Recruiters can publish new job listings with customizable fields.
+![Post Job Form](./screenshots/post-job.png)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+### 8. Terms & Conditions Page
+We have prepared some interesting terms and conditions.
+![Terms](./screenshots/terms.png)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🛠 Tech Stack
+
+| Layer       | Stack                        |
+|-------------|------------------------------|
+| Frontend    | Angular + TypeScript         |
+| Backend     | Spring Boot (Java 23)        |
+| Database    | PostgreSQL (via Supabase)    |
+| UI Library  | Bootstrap + Icons            |
+
+---
+
+## 👥 Contributors
+- Hongxiang LIN
+- Liya XU
+
+---
+
+## 🔗 Project Links
+
+- [Frontend GitHub Repo](https://github.com/xuliya000/job-portal-frontend)
+- [Backend GitHub Repo](https://github.com/xuliya000/job-portal-backend)
