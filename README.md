@@ -1,12 +1,14 @@
 # 💼 JobSter
 
-**JobSter** is a modern web platform built for connecting job seekers and recruiters. It simplifies the job application and hiring process.
+**JobSter** is a modern web platform built for connecting job seekers and recruiters. 
+
+It simplifies the job application and hiring process.
 
 ---
 
 ## 🔍 Features Overview
 
-### 1. Browse & Filter Jobs
+### 1. Browse & Filter Jobs & Sort Jobs by dates or salaries
 Search by location, job type, salary, experience level, and company.
 ![Job Listings](./screenshots/job-listings.png)
 
@@ -25,7 +27,7 @@ Register and create a full profile with contact, address, and preferences.
 ---
 
 ### 4. Job Details
-Click into any job to view detailed description, requirements, and salary.
+Click into any job to view detailed description, post dates, requirements, salary and number of applications.
 ![Job Details](./screenshots/job-details.png)
 
 ---
@@ -56,7 +58,7 @@ Recruiters can publish new job listings with customizable fields.
 ---
 
 ### 8. Terms & Conditions Page
-Well-styled and humorously written terms and conditions.
+We have prepared some interesting terms and conditions.
 ![Terms](./screenshots/terms.png)
 
 ---
